@@ -5,13 +5,13 @@ hosts:
     base_box:
       image: Canonical:0001-com-ubuntu-server-jammy:22_04-lts-gen2:latest
       man_user: ubuntu
-    flavor: Standard_B2pts_v2
+    flavor: Standard_B2ats_v2
 
   - name: client
     base_box:
       image: Canonical:0001-com-ubuntu-server-jammy:22_04-lts-gen2:latest
       man_user: ubuntu
-    flavor: Standard_B2pts_v2
+    flavor: Standard_B2ats_v2
 
 routers:
   - name: router

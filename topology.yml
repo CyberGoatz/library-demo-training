@@ -3,22 +3,22 @@ name: library-demo-training
 hosts:
   - name: server
     base_box:
-      image: ubuntu-noble-x86_64
+      image: Canonical:0001-com-ubuntu-server-noble:24_04-lts:latest
       man_user: ubuntu
-    flavor: standard.small
+    flavor: Standard_B2s
 
   - name: client
     base_box:
-      image: ubuntu-noble-x86_64
+      image: Canonical:0001-com-ubuntu-server-noble:24_04-lts:latest
       man_user: ubuntu
-    flavor: standard.small
+    flavor: Standard_B2s
 
 routers:
   - name: router
     base_box:
-      image: debian-12-x86_64
-      man_user: debian
-    flavor: standard.small
+      image: Canonical:0001-com-ubuntu-server-noble:24_04-lts:latest
+      man_user: ubuntu
+    flavor: Standard_B2s
 
 networks:
   - name: server-switch
@@ -27,21 +27,22 @@ networks:
 
   - name: client-switch
     cidr: 192.168.30.0/24
+    accessible_by_user: True
 
 net_mappings:
   - host: server
     network: server-switch
-    ip: 192.168.20.5
+    ip: 192.168.20.20
   - host: client
     network: client-switch
-    ip: 192.168.30.5
+    ip: 192.168.30.20
 
 router_mappings:
   - router: router
     network: server-switch
-    ip: 192.168.20.1
+    ip: 192.168.20.10
   - router: router
     network: client-switch
-    ip: 192.168.30.1
+    ip: 192.168.30.10
 
 groups: []

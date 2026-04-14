@@ -24,14 +24,6 @@
   apt:
     name: xinetd
 
-- name: Copy xinetd telnet file
-  copy:
-    src: telnet
-    dest: /etc/xinetd.d/telnet
-    owner: root
-    mode: '0644'
-  notify: restart xinetd
-
 - name: Create privilege escalation vulnerability
   lineinfile:
     path: /etc/sudoers
@@ -54,5 +46,5 @@
 - name: Create alias for client
   lineinfile:
     path: '/etc/hosts'
-    line: '192.168.30.5 client'
+    line: '192.168.30.20 client'
 ...

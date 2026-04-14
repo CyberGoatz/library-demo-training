@@ -4,6 +4,8 @@ Linear game for [CyberRangeCZ Platform](https://docs.platform.cyberrange.cz/).
 
 Follow [general instructions](https://docs.platform.cyberrange.cz/basic-concepts/typical-training-workflow/training-workflow-cloud/) to set up the game.
 
+This branch is prepared for Azure-backed sandbox provisioning.
+
 ## Game Levels Summary
 - `nmap` port scanning
 - `hydra` password guessing at `telnet`
@@ -12,9 +14,9 @@ Follow [general instructions](https://docs.platform.cyberrange.cz/basic-concepts
 ## Topology summary
 |Host|Image|Flavor|
 |-|-|-|
-|server|ubuntu-noble-x86_64|standard.small|
-|client|ubuntu-noble-x86_64|standard.small|
-|router|debian-12-x86_64|standard.small|
+|server|Canonical:0001-com-ubuntu-server-noble:24_04-lts:latest|Standard_B2s|
+|client|Canonical:0001-com-ubuntu-server-noble:24_04-lts:latest|Standard_B2s|
+|router|Canonical:0001-com-ubuntu-server-noble:24_04-lts:latest|Standard_B2s|
 
 ## License and Credits
 [MIT License](./LICENSE)

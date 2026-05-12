@@ -4,7 +4,7 @@
 - name: Create alias for server
   lineinfile:
     path: '/etc/hosts'
-    line: '192.168.20.20 server'
+    line: '127.0.0.1 server'
 
 - name: Install packages
   apt:
@@ -12,6 +12,7 @@
       - nmap
       - hydra
       - medusa
+      - telnet
     update_cache: yes
 
 - name: Add passwords file to the home directory
@@ -20,4 +21,32 @@
     dest: /home/user/passlist.txt
     owner: user
     mode: '0644'
+
+- name: Render Docker Compose with generated telnet port
+  template:
+    src: docker-compose.yml.j2
+    dest: /home/crczp-user/containers/docker-compose.yml
+    owner: crczp-user
+    group: crczp-user
+    mode: '0644'
+
+- name: Recreate server container with generated telnet port
+  command: docker compose -f /home/crczp-user/containers/docker-compose.yml up -d --force-recreate
+  changed_when: true
+
+- name: Place generated alice flag in server container
+  shell: |
+    set -e
+    printf '%s\n' {{ alice_flag | quote }} | docker exec -i server tee /home/alice/flag.txt >/dev/null
+    docker exec server chown alice:alice /home/alice/flag.txt
+    docker exec server chmod 0600 /home/alice/flag.txt
+  no_log: true
+
+- name: Place generated root flag in server container
+  shell: |
+    set -e
+    printf '%s\n' {{ root_flag | quote }} | docker exec -i server tee /root/flag.txt >/dev/null
+    docker exec server chown root:root /root/flag.txt
+    docker exec server chmod 0600 /root/flag.txt
+  no_log: true
 ...

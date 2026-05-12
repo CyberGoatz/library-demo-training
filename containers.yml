@@ -1,0 +1,11 @@
+containers:
+  - name: server
+    dockerfile: containers/server/
+
+container_mappings:
+  - container: server
+    host: client
+    # Initial backend-generated mapping. The client role rewrites Compose with
+    # the generated APG telnet_port during user provisioning.
+    port: 2323
+    hidden: false

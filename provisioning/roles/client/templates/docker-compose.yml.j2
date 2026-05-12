@@ -1,0 +1,15 @@
+version: '3.7'
+
+services:
+  server:
+    container_name: server
+    network_mode: bridge
+    ports:
+      - "{{ telnet_port }}:22"
+    build:
+      context: server
+      dockerfile: Dockerfile
+    volumes:
+      - /home/crczp-user/.ssh/user_rsa.pub:/root/.ssh/authorized_keys
+      - /dev/log:/dev/log
+    command: bash -c "service ssh start && chown root /root/.ssh/authorized_keys && tail -f /dev/null"

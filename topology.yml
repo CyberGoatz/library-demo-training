@@ -10,6 +10,10 @@ hosts:
 routers: []
 
 networks:
+  - name: server-switch
+    cidr: 192.168.20.0/24
+    accessible_by_user: False
+
   - name: client-switch
     cidr: 192.168.30.0/24
     accessible_by_user: True

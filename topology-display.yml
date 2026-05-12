@@ -1,0 +1,7 @@
+routerless_gateway:
+  name: router
+
+container_mappings:
+  - container: server
+    network: server-switch
+    ip: 192.168.20.20

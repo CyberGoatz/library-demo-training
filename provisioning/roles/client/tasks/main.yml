@@ -4,7 +4,31 @@
 - name: Create alias for server
   lineinfile:
     path: '/etc/hosts'
-    line: '127.0.0.1 server'
+    line: '192.168.20.20 server'
+
+- name: Create persistent server loopback alias service
+  copy:
+    dest: /etc/systemd/system/server-loopback-alias.service
+    mode: '0644'
+    content: |
+      [Unit]
+      Description=Expose logical server IP on client loopback
+      After=network.target
+
+      [Service]
+      Type=oneshot
+      ExecStart=/usr/sbin/ip address replace 192.168.20.20/32 dev lo
+      RemainAfterExit=yes
+
+      [Install]
+      WantedBy=multi-user.target
+
+- name: Enable server loopback alias
+  systemd:
+    name: server-loopback-alias.service
+    enabled: yes
+    state: started
+    daemon_reload: yes
 
 - name: Install packages
   apt:

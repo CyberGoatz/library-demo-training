@@ -16,7 +16,7 @@ This branch is prepared for Azure-backed sandbox provisioning.
 |-|-|-|
 |server|Canonical:0001-com-ubuntu-server-noble:24_04-lts:latest|Standard_B2s|
 |client|Canonical:0001-com-ubuntu-server-noble:24_04-lts:latest|Standard_B2s|
-|router|Canonical:0001-com-ubuntu-server-noble:24_04-lts:latest|Standard_B2s|
+|router|Canonical:0001-com-ubuntu-server-noble:24_04-lts:latest|Standard_B1s|
 
 ## License and Credits
 [MIT License](./LICENSE)
